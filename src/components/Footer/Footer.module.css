@@ -1,0 +1,50 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 1280px;
+}
+
+.footer a {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.footer a div {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.footer a .vk {
+    background-image: url("./../../images/vk.png");
+    background-size: 100% 100%;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+}
+
+.footer a .tg {
+    background-image: url("./../../images/tg.svg");
+    background-size: 100% 100%;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+}
+
+@media (max-width: 1280px) {
+
+    .footer {
+        box-sizing: border-box;
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .footer a {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
+}

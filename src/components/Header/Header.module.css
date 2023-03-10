@@ -1,0 +1,127 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    min-height: 50px;
+    background-color: #FBC252;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 2px 2px 0 rgba(60, 64, 67, 0.164) ;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1280px;
+    
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.menu {
+    display: flex;
+    font-size: 1rem;
+    
+}
+
+.menu a, .clrBut {
+    cursor: pointer;
+    font-weight: 400;
+    padding-left: 10px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.butMenu {
+    cursor: pointer;
+    position: relative;
+    display: none;
+    font-size: 1.5rem;
+}
+
+.trigger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;   
+}
+
+.icon {
+    margin-right: 5px;
+    /* font-size: 14px; */
+}
+
+@media (max-width: 780px) {
+    .butMenu {
+        display: block;
+        font-weight: 500;
+    }
+
+    .menu {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        top: 50px;
+        right: 10px;
+        transition: 0.3s;
+        background-color: #fff;
+        overflow: hidden;
+        height: 0;
+        width: 150px;
+        border-radius: 0 0 3px 3px;
+        font-size: .95rem;
+        opacity: 0;
+        z-index: 15;
+    }
+
+    .openMenu{
+        height: calc(40px*4 + 30px);
+        opacity: 1;
+        box-shadow: 0 2px 2px 0 rgba(60, 64, 67, 0.164) ;
+    }
+
+    .menu a, .clrBut {
+        font-size: .9rem;
+        background-color: #fff;
+        display: flex;
+        align-items: center;   
+        height: 40px;
+        transition: 0.2s;
+        color: #282c34;
+    }
+    .openMenu a:hover, .clrBut:hover {
+        color: #fff;
+        background-color: #ffce6d;
+    }
+
+    .openMenu .lastMenu {
+        height: 30px;
+        background-color: #ffce6d;
+    }
+
+    .openMenu a:active, .clrBut:active {
+        background-color: #ffce6d;
+        color: #fff;
+    }
+
+    .content {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+@media (max-width: 1280px) {
+    .content {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

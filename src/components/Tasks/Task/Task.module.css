@@ -1,0 +1,117 @@
+.task {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    min-width: 150px;
+    height: 150px;
+    background-color: #F4F4F4;
+    border-radius: 5px;
+    box-shadow: 0 0px 5px 0px rgba(17, 12, 46, 0.16);
+    transition: 0.3S;
+    margin: 10px;
+}
+
+.icon {
+    font-size: 30px;
+}
+
+.task:hover {
+    color: #FFF;
+    background-color: #ffce6dbd;
+}
+
+.task:active {
+    color: #282c34;
+    background-color: #ffF;
+}
+
+.info {
+    font-size: .9rem;
+    width: 100%;
+    height: 100%;   
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.label {
+    box-sizing: border-box;
+    padding-bottom: 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-bottom: 2px solid #ffcb62c0;
+}
+
+.task:hover .label {
+    border-bottom: 2px solid #fff;
+}
+
+.text, .task:active .info .text, .task:active .info .upDate   {
+    font-weight: 400;
+    height: 80px;
+    overflow-y: hidden;
+    display: flex;
+    white-space: pre-wrap;
+    flex-wrap: wrap;
+    color: #282c3488;
+}
+
+.task:hover .text, .task:hover .upDate {
+    color: #FFF;
+}
+
+.upDate {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    color: #282c3488;
+}
+
+.active {
+    box-shadow: 0 0px 5px 0px #32CD32;
+}
+
+.close {
+    opacity: 0.7;
+    box-shadow: 0 0px 5px 0px #FF2400;
+}
+
+.noClosed {
+    width: 0;
+    overflow: hidden;
+}
+
+.closed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    color: #FFF;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px #FF2400;
+    font-weight: 600;
+    transform: rotate(-45deg);
+}
+
+.delete {
+    color: #fff;
+    display: none;
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    font-size: 1.1rem;
+}
+
+.task:hover .delete {
+    display: block;
+}
+.delete:active {
+    color: #282c34;
+}
