@@ -59,25 +59,25 @@ let Task : React.FC<Props>  = ({task, getTaskData, updateTaskData}) => {
 
     return <>
         {task?.id !== Number(id) ? <div >None </div> :
-       <div className={css.task}>
+       <>
        <Form
            name="basic"
            className={css.form}
-           labelCol={{ span: 3 }}
-           wrapperCol={{ span: 16 }}
            onFinish={(values)=>{onFinish(task, values, updateTaskData, task.id,)}}
            initialValues={{id: task.id, name:task.name, status:task.status, text:task.text, upDate:task.upDate}}
            onFinishFailed={onFinishFailed}
            autoComplete="off"
        >
+        <label>Name</label>
            <Form.Item
-               label="Name"
+               
                name="name"
                rules={[{ required: true, message: 'Please input name!' }, ]}
            >
                <Input onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } maxLength={15} placeholder="Task name" />
            </Form.Item>
-           <Form.Item name="status" label="Status" rules={[{ required: true }]}>
+           <label>Status</label>
+           <Form.Item name="status" rules={[{ required: true }]}>
                <Select
                    options={[
                        {
@@ -92,12 +92,12 @@ let Task : React.FC<Props>  = ({task, getTaskData, updateTaskData}) => {
                >
                </Select>
            </Form.Item>
+           <label>Text</label>
            <Form.Item
-               label="Text"
                name="text"
                rules={[{ required: true, message: 'Please input text!' }]}
            >
-               <TextArea  onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } autoSize={{ minRows: 10, maxRows: 10 }} placeholder="Task text" />
+               <TextArea  onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } autoSize={{ minRows: 15, maxRows: 20 }} placeholder="Task text" />
            </Form.Item>
            <Form.Item >
                <Button className={css.submit}  type="primary" htmlType="submit">
@@ -105,7 +105,7 @@ let Task : React.FC<Props>  = ({task, getTaskData, updateTaskData}) => {
                </Button>
            </Form.Item>
        </Form>
-   </div>}
+   </>}
     </>
 }
 

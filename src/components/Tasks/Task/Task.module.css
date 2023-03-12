@@ -49,10 +49,13 @@
     border-bottom: 2px solid #fff;
 }
 
-.text, .task:active .info .text, .task:active .info .upDate   {
-    font-weight: 400;
+.text {
     height: 80px;
     overflow-y: hidden;
+}
+
+.text, .task:active .info .text, .task:active .info .upDate   {
+    font-weight: 400;
     display: flex;
     white-space: pre-wrap;
     flex-wrap: wrap;

@@ -5,9 +5,9 @@ import css from "./Footer.module.css"
 let Footer = () => {
     return <div className={css.footer}>
         <div>by vadimkrasiff</div>
-        <a><div><GithubOutlined  /></div>GitHub</a>
-        <a><div className={css.vk}></div>VK</a>
-        <a><div className={css.tg}></div>Telegram</a>
+        <a href="https://github.com/vadimkrasiff"><div><GithubOutlined  /></div>GitHub</a>
+        <a href="https://vk.com/zachem_tobi_ito"><div className={css.vk}></div>VK</a>
+        <a href="https://t.me/zachem_tobi_ito"><div className={css.tg}></div>Telegram</a>
     </div>
 }
 

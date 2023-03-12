@@ -38,25 +38,25 @@ type Prop =  {
     useEffect(() => {
         setTasks()
       }, []);
-    return <div className={css.create}>
+    return <>
         <Form
             name="basic"
             className={css.form}
-            labelCol={{ span: 3 }}
-            wrapperCol={{ span: 16 }}
             onFinish={(values)=>{onFinish(values, createNewTask, navigate, tasks.length); console.log(tasks)}}
             initialValues={{ name:"", status:true, text:"", upDate:""}}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
+            <label>Name</label>
             <Form.Item
-                label="Name"
+            className={css.item}
                 name="name"
                 rules={[{ required: true, message: 'Please input name!' }]}
             >
                 <Input onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } maxLength={15} placeholder="Task name" />
             </Form.Item>
-            <Form.Item name="status" label="Status" rules={[{ required: true }]}>
+            <label>Status</label>
+            <Form.Item name="status" rules={[{ required: true }]}>
                 <Select
                     options={[
                         {
@@ -71,20 +71,20 @@ type Prop =  {
                 >
                 </Select>
             </Form.Item>
+            <label>Text</label>
             <Form.Item
-                label="Text"
                 name="text"
                 rules={[{ required: true, message: 'Please input text!' }]}
             >
-                <TextArea  onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } autoSize={{ minRows: 10, maxRows: 10 }} placeholder="Task text" />
+                <TextArea  onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } autoSize={{ minRows: 15, maxRows: 20 }} placeholder="Task text" />
             </Form.Item>
             <Form.Item >
                 <Button className={css.submit} type="primary" htmlType="submit">
-                    Submit
+                Add a task
                 </Button>
             </Form.Item>
         </Form>
-    </div>
+    </>
 }
 
 const mapStateToProps = (state: State) => ({
