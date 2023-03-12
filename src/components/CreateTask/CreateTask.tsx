@@ -1,6 +1,7 @@
+import { getValue } from '@testing-library/user-event/dist/utils';
 import { Button, Checkbox, Form, Input, Select } from 'antd';
 import { Option } from 'antd/es/mentions';
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { compose } from 'redux';
@@ -25,6 +26,8 @@ const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
 };
 
+
+
 type Prop =  {
     tasks: Task[];
     createNewTask: (task:Task) => void;
@@ -33,15 +36,20 @@ type Prop =  {
   
   let CreateTask: React.FC<Prop> = ({ tasks, createNewTask, setTasks }) => {
     
-    let navigate = useNavigate();
+    const [select,onSelect] = useState(true)
 
+const onChangeSelect = (e:any) => {
+    onSelect(e)
+}  
+
+    let navigate = useNavigate();
     useEffect(() => {
         setTasks()
       }, []);
     return <>
         <Form
+        className={`${css.form} ${select ? css.active: css.close}`}
             name="basic"
-            className={css.form}
             onFinish={(values)=>{onFinish(values, createNewTask, navigate, tasks.length); console.log(tasks)}}
             initialValues={{ name:"", status:true, text:"", upDate:""}}
             onFinishFailed={onFinishFailed}
@@ -58,6 +66,7 @@ type Prop =  {
             <label>Status</label>
             <Form.Item name="status" rules={[{ required: true }]}>
                 <Select
+                onChange={(value) => onChangeSelect(value)}
                     options={[
                         {
                             value: true,
@@ -76,7 +85,7 @@ type Prop =  {
                 name="text"
                 rules={[{ required: true, message: 'Please input text!' }]}
             >
-                <TextArea  onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } autoSize={{ minRows: 15, maxRows: 20 }} placeholder="Task text" />
+                <TextArea   onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } autoSize={{ minRows: 15, maxRows: 20 }} placeholder="Task text" />
             </Form.Item>
             <Form.Item >
                 <Button className={css.submit} type="primary" htmlType="submit">

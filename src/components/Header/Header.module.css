@@ -4,7 +4,7 @@ header {
     justify-content: center;
     width: 100vw;
     min-height: 50px;
-    background-color: #FBC252;
+    background-color: #0A2647;
     color: #fff;
     border-bottom: 1px solid #fff;
     box-shadow: 0 2px 2px 0 rgba(60, 64, 67, 0.164) ;
@@ -99,16 +99,16 @@ header {
     }
     .openMenu a:hover, .clrBut:hover {
         color: #fff;
-        background-color: #ffce6d;
+        background-color: #0a2647ed;
     }
 
     .openMenu .lastMenu {
         height: 30px;
-        background-color: #ffce6d;
+        background-color: #0a2647ed;
     }
 
     .openMenu a:active, .clrBut:active {
-        background-color: #ffce6d;
+        background-color: #0a2647ed;
         color: #fff;
     }
 

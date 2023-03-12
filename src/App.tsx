@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider, connect } from 'react-redux';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter, Navigate } from 'react-router-dom';
@@ -13,14 +13,19 @@ import { clearTasks } from './api/api';
 import Footer from './components/Footer/Footer';
 import CreateTask from './components/CreateTask/CreateTask';
 import Task from './components/Task/Task';
+import { initializeApp } from './redux/app-reducer';
+import Preloader from './components/common/Preloader/Preloader';
 
-function App() {
+interface Props {
+  initialized: boolean;
+  initializeApp: () => void;
+}
 
-  // clearTasks()
-  return (
-    <Provider store={store}>
-    <BrowserRouter>
-    <div className="App">
+let App: React.FC<Props> = ({initialized,initializeApp}) => {
+
+  useEffect(()=> {initializeApp()}, [])
+
+  return <>{initialized ? <div><Preloader/></div> :<div className="App">
       <Header />
       <div className='content'>
 
@@ -33,10 +38,21 @@ function App() {
         </Routes>
       </div>
       <footer><Footer /></footer>
-    </div>
-    </BrowserRouter>
-    </Provider>
-  );
+    </div>}
+    </> 
+};
+
+let mapStateToProps = (state:any) => ({
+  initialized: state.app.initialized
+});
+const AppContainer = compose(connect(mapStateToProps, {initializeApp}))(App);
+
+const ExportApp = () => {
+  return<BrowserRouter>
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>
+</BrowserRouter>
 }
 
-export default App;
+export default ExportApp;

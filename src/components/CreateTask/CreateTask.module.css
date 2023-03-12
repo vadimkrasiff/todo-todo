@@ -5,6 +5,16 @@
     border-radius: 5px;
 }
 
+.active {
+    border-radius: 5px;
+    box-shadow: 0 0px 5px 0px #32CD32;
+}
+
+.close {
+    box-shadow: 0 0px 5px 0px #FF2400;
+    border-radius: 5px;
+}
+
 label {
     position: relative;
     display: inline-block;

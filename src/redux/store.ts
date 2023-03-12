@@ -2,10 +2,12 @@ import thunkMiddleware from "redux-thunk";
 import { combineReducers, legacy_createStore, applyMiddleware, compose } from "redux";
 import tasksReducer from "./tasks-reducer";
 import taskReducer from "./task-reducer";
+import appReducer from "./app-reducer";
 
 let reducers  = combineReducers({
     tasks: tasksReducer,
-    task: taskReducer
+    task: taskReducer,
+    app: appReducer
 });
 
 declare global {
