@@ -34,7 +34,7 @@ let App: React.FC<Props> = ({initialized,initializeApp}) => {
           <Route path='/task/:id' element={<Task />} />
           <Route path='/createtask' element={<CreateTask /> } />
           <Route path='/' element={<Navigate to="/tasks" replace />} />
-          <Route path='*'element={<div>404 Not Found</div>}  />
+          <Route path='*'element={<div>404 Not Found<Preloader/></div>}  />
         </Routes>
       </div>
       <footer><Footer /></footer>

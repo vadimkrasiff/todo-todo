@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { compose } from 'redux';
 import { createNewTask, setTasks } from '../../redux/tasks-reducer';
+import Preloader from '../common/Preloader/Preloader';
 import css from "./CreateTask.module.css"
 
 const { TextArea } = Input;
@@ -14,9 +15,9 @@ const FirstCaseUp = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-const onFinish = (values: Task, createNewTask: (task:Task) => void, navigate: any, id:number) => {
+const onFinish = (values: Task, createNewTask: (task: Task) => void, navigate: any, id: number) => {
     let time = new Date();
-    createNewTask({...values, id: id, upDate: new Date().toString()});
+    createNewTask({ ...values, id: id, upDate: new Date().toString() });
     console.log(time.toLocaleString())
     navigate('/tasks');
     console.log(values.id)
@@ -28,45 +29,46 @@ const onFinishFailed = (errorInfo: any) => {
 
 
 
-type Prop =  {
+type Prop = {
     tasks: Task[];
-    createNewTask: (task:Task) => void;
+    isFetching: boolean;
+    createNewTask: (task: Task) => void;
     setTasks: () => void;
-  };
-  
-  let CreateTask: React.FC<Prop> = ({ tasks, createNewTask, setTasks }) => {
-    
-    const [select,onSelect] = useState(true)
+};
 
-const onChangeSelect = (e:any) => {
-    onSelect(e)
-}  
+let CreateTask: React.FC<Prop> = ({ tasks, isFetching, createNewTask, setTasks }) => {
+
+    const [select, onSelect] = useState(true)
+
+    const onChangeSelect = (e: any) => {
+        onSelect(e)
+    }
 
     let navigate = useNavigate();
     useEffect(() => {
         setTasks()
-      }, []);
-    return <>
+    }, []);
+    return <>{isFetching ? <div ><Preloader/></div> :
         <Form
-        className={`${css.form} ${select ? css.active: css.close}`}
+            className={`${css.form} ${select ? css.active : css.close}`}
             name="basic"
-            onFinish={(values)=>{onFinish(values, createNewTask, navigate, tasks.length); console.log(tasks)}}
-            initialValues={{ name:"", status:true, text:"", upDate:""}}
+            onFinish={(values) => { onFinish(values, createNewTask, navigate, tasks.length); console.log(tasks) }}
+            initialValues={{ name: "", status: true, text: "", upDate: "" }}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
             <label>Name</label>
             <Form.Item
-            className={css.item}
+                className={css.item}
                 name="name"
                 rules={[{ required: true, message: 'Please input name!' }]}
             >
-                <Input onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } maxLength={15} placeholder="Task name" />
+                <Input onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value)} maxLength={15} placeholder="Task name" />
             </Form.Item>
             <label>Status</label>
             <Form.Item name="status" rules={[{ required: true }]}>
                 <Select
-                onChange={(value) => onChangeSelect(value)}
+                    onChange={(value) => onChangeSelect(value)}
                     options={[
                         {
                             value: true,
@@ -85,35 +87,37 @@ const onChangeSelect = (e:any) => {
                 name="text"
                 rules={[{ required: true, message: 'Please input text!' }]}
             >
-                <TextArea   onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value) } autoSize={{ minRows: 15, maxRows: 20 }} placeholder="Task text" />
+                <TextArea onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value)} autoSize={{ minRows: 15, maxRows: 20 }} placeholder="Task text" />
             </Form.Item>
             <Form.Item >
                 <Button className={css.submit} type="primary" htmlType="submit">
-                Add a task
+                    Add a task
                 </Button>
             </Form.Item>
-        </Form>
+        </Form>}
     </>
 }
 
 const mapStateToProps = (state: State) => ({
-    tasks: state.tasks.tasks
-  });
-  
-  type State = {
+    tasks: state.tasks.tasks,
+    isFetching: state.tasks.isFetching
+});
+
+type State = {
     tasks: Tasks;
-  }
-  
-  interface Tasks {
-    tasks: Task[]
-  }
-  
-  interface Task {
+}
+
+interface Tasks {
+    tasks: Task[],
+    isFetching: boolean;
+}
+
+interface Task {
     id: number;
     name: string;
     text: string;
     status: boolean;
     upDate: string;
-  }
+}
 
-  export default compose(connect(mapStateToProps, { createNewTask, setTasks }))(CreateTask);
+export default compose(connect(mapStateToProps, { createNewTask, setTasks }))(CreateTask);

@@ -1,20 +1,35 @@
 import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useOnClickOutside } from 'usehooks-ts'
 import css from "./Header.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { PlusOutlined, RollbackOutlined, FieldTimeOutlined } from "@ant-design/icons"
 import { Button, Modal } from "antd";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import {deleteTasks} from "./../../redux/tasks-reducer"
+import {deleteTasks, setTasks} from "./../../redux/tasks-reducer"
+import {initializeApp} from "./../../redux/app-reducer"
+
+type Task = {
+    id: number;
+    name: string;
+    text: string;
+    status: boolean;
+    upDate: string;
+  }
 
 interface Props {
-    deleteTasks: ()=>void; 
+    tasks: Task[];
+    deleteTasks: ()=>void;
+    setTasks:() => void;
 }
 
-let Header : React.FC<Props> = ({deleteTasks}) => {
+let Header : React.FC<Props> = ({tasks, deleteTasks, setTasks}) => {
     
+    useEffect(()=>{setTasks()}, [])
+
+    const navigate = useNavigate();
+
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const showModal = () => {
@@ -25,6 +40,8 @@ let Header : React.FC<Props> = ({deleteTasks}) => {
         setIsModalOpen(false);
         deleteTasks();
         closeMenu();
+        setTasks();
+        navigate("/tasks");
     };
 
     const handleCancel = () => {
@@ -66,15 +83,17 @@ let Header : React.FC<Props> = ({deleteTasks}) => {
         centered
         width={300}
         bodyStyle={{height:10}}
-        title="Do you want to delete all the tasks?"
-            footer={[
+        title={tasks.length > 0 ? "Do you want to delete all the tasks?": "You have no tasks"}
+            footer={tasks.length > 0 ?[
                 <Button key="back" onClick={handleCancel}>No</Button>,
                 <Button key="submit" type="primary" onClick={handleOk}>Yes</Button>,
-            ]}
+            ]:<Button key="back" type="primary" onClick={handleCancel}>Ok</Button>}
             open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         </Modal>
     </header>
 }
 
-
-export default  compose(connect(null,{deleteTasks}))(Header);
+let mapStateToProps = (state:any) => ({
+    tasks: state.tasks.tasks
+})
+export default  compose(connect(mapStateToProps,{deleteTasks, setTasks, initializeApp}))(Header);
