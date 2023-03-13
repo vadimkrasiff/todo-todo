@@ -1,22 +1,14 @@
 .form {
-    
     padding: 20px;
     box-shadow: 0 0px 5px 0px rgba(17, 12, 46, 0.16);
     width: 100%;
     border-radius: 5px;
-}
-
-.active {
+    color: var(--color);
     border-radius: 5px;
-    box-shadow: 0 0px 5px 0px #32CD32;
+    border: 1px solid #d9d9d9;
 }
 
-.close {
-    box-shadow: 0 0px 5px 0px #FF2400;
-    border-radius: 5px;
-}
-
-label {
+.label {
     position: relative;
     display: inline-block;
     margin-left: 7px;
@@ -26,26 +18,51 @@ label {
     top: 10px;
 }
 
-label::before {
+.item,
+.item div span,
+.item div {
+    background-color: var(--background-color) !important;
+    color: var(--color) !important;
+}
+
+.label::before {
     position: absolute;
     left: 0;
     top: 10px;
     width: 100%;
     height: 5px;
-    background-color: #fff;
+    background-color: var(--label-background);
     content: '';
     z-index: -1;
 }
 
 .submit {
     width: 200px;
+    background-color: var(--submit-background);
+    box-shadow: none;
 }
+
 @media (max-width: 580px) {
     .form {
         width: 100%;
     }
+
     .submit {
         width: 100%;
-        margin-left:0;
+        margin-left: 0;
     }
+}
+
+:root[data-theme="light"] {
+    --color: #000;
+    --label-background: #fff;
+    --submit-background: #0A2647;
+    --preloader-color: #000;
+}
+
+:root[data-theme="dark"] {
+    --color: #fff;
+    --background-color: #282c34;
+    --label-background: #282c34;
+    --submit-background: #31353f;
 }

@@ -8,11 +8,12 @@
     width: 150px;
     min-width: 150px;
     height: 150px;
-    background-color: #F4F4F4;
+    background-color: var(--task-background);
     border-radius: 5px;
     box-shadow: 0 0px 5px 0px rgba(17, 12, 46, 0.16);
     transition: 0.3S;
     margin: 10px;
+    color: var(--task-color);
 }
 
 .icon {
@@ -20,19 +21,19 @@
 }
 
 .task:hover {
-    color: #FFF;
-    background-color: #144272;
+    color: var(--task-hover-color);
+    background-color: var(--task-hover-background-color);
 }
 
 .task:active {
-    color: #282c34;
-    background-color: #ffF;
+    color: var(--task-active-color);
+    background-color: var(--task-active-background-color);
 }
 
 .info {
     font-size: .9rem;
     width: 100%;
-    height: 100%;   
+    height: 100%;
     box-sizing: border-box;
     padding: 10px;
 }
@@ -42,11 +43,11 @@
     padding-bottom: 5px;
     font-size: 1.1rem;
     font-weight: 500;
-    border-bottom: 2px solid #205395c2;
+    border-bottom: 2px solid var(--label-border-bottom);
 }
 
 .task:hover .label {
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid var(--task-hover-color);
 }
 
 .text {
@@ -54,23 +55,33 @@
     overflow-y: hidden;
 }
 
-.text, .task:active .info .text, .task:active .info .upDate   {
+.text  {
     font-weight: 400;
     display: flex;
     white-space: pre-wrap;
     flex-wrap: wrap;
-    color: #282c3488;
+    color: var(--text-color);
 }
 
-.task:hover .text, .task:hover .upDate {
-    color: #FFF;
+.task:active .info .text,
+.task:active .info .upDate {
+    font-weight: 400;
+    display: flex;
+    white-space: pre-wrap;
+    flex-wrap: wrap;
+    color: var(--text-active-color);
+}
+
+.task:hover .text,
+.task:hover .upDate {
+    color: var(--text-hover-color);
 }
 
 .upDate {
     position: absolute;
     right: 10px;
     bottom: 5px;
-    color: #282c3488;
+    color: var(--text-color);
 }
 
 .active {
@@ -96,7 +107,7 @@
     left: 0;
     top: 0;
     height: 100%;
-    color: #FFF;
+    color: var(--task-hover-color);
     font-size: 1.1rem;
     text-shadow: 1px 1px 2px #FF2400;
     font-weight: 600;
@@ -104,7 +115,7 @@
 }
 
 .delete {
-    color: #fff;
+    color: var(--task-hover-color);
     display: none;
     position: absolute;
     right: 7px;
@@ -115,6 +126,33 @@
 .task:hover .delete {
     display: block;
 }
+
 .delete:active {
-    color: #282c34;
+    color: var(--task-color);
+}
+
+:root[data-theme="light"] {
+    --task-background: #F4F4F4;
+    --task-color: #282c34;
+    --task-hover-color: #fff;
+    --task-hover-background-color: #144272;
+    --task-active-color: #282c34;
+    --task-active-background-color: #ffF;
+    --label-border-bottom: #205395c2;
+    --text-color: #282c3488;
+    --text-hover-color: #fff;
+    --text-active-color: #282c3488;
+}
+
+:root[data-theme="dark"] {
+    --task-background: #3b404b;
+    --task-hover-color: #282c34;
+    --task-color: #fff;
+    --task-hover-background-color: #fff;
+    --task-active-color: #282c34;
+    --task-active-background-color: #ffF;
+    --label-border-bottom: #fff;
+    --text-hover-color: #282c3488;
+    --text-color: #fff;
+    --text-active-color: #282c3488;
 }

@@ -9,6 +9,10 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import {deleteTasks, setTasks} from "./../../redux/tasks-reducer"
 import {initializeApp} from "./../../redux/app-reducer"
+import { Switch } from 'antd';
+import { ThemeContext, themes  } from "../../contexts/ThemeContext";
+import Themes from "./Themes/Themes";
+
 
 type Task = {
     id: number;
@@ -23,6 +27,11 @@ interface Props {
     deleteTasks: ()=>void;
     setTasks:() => void;
 }
+
+const onChange = (theme:any, setTheme:any) => {
+    if (theme === themes.light) setTheme(themes.dark)
+          if (theme === themes.dark) setTheme(themes.light)
+  };
 
 let Header : React.FC<Props> = ({tasks, deleteTasks, setTasks}) => {
     
@@ -73,6 +82,7 @@ let Header : React.FC<Props> = ({tasks, deleteTasks, setTasks}) => {
                 <NavLink to="/activetasks" onClick={closeMenu}> <FieldTimeOutlined className={css.icon} />Active task</NavLink>
                 <NavLink to="/lasttasks" onClick={closeMenu}><RollbackOutlined className={css.icon} />last task</NavLink>
                 <div className={css.clrBut} onClick={showModal}><CloseOutlined className={css.icon} />Clear tasks</div>
+                <div  ref={ref}><Themes /></div>
                 <div className={css.lastMenu}></div>
             </div>
             <div className={css.butMenu} ><MenuOutlined />

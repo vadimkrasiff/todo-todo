@@ -6,20 +6,6 @@
     transition: 0.2s;
 }
 
-.task {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #FBC252;
-    margin: 10px;
-    width: 250px;
-    height: 250px;
-    
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgb(0 0 0 / 20%);;
-}
-
 @media (max-width: 1280px) {
     .tasks {
         width: calc(170px*6);

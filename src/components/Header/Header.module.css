@@ -4,7 +4,7 @@ header {
     justify-content: center;
     width: 100vw;
     min-height: 50px;
-    background-color: #0A2647;
+    background-color: var( --header-background);
     color: #fff;
     border-bottom: 1px solid #fff;
     box-shadow: 0 2px 2px 0 rgba(60, 64, 67, 0.164) ;
@@ -28,15 +28,26 @@ header {
 .menu {
     display: flex;
     font-size: 1rem;
-    
+    align-items: center;
 }
 
 .menu a, .clrBut {
     cursor: pointer;
-    font-weight: 400;
     padding-left: 10px;
     font-weight: 500;
     color: #fff;
+}
+
+.select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select span {
+    font-size: 1rem;
+    font-weight: 500 !important;
+    color: #fff !important;
 }
 
 .butMenu {
@@ -68,6 +79,7 @@ header {
     .menu {
         position: fixed;
         display: flex;
+        align-items: unset;
         flex-direction: column;
         top: 50px;
         right: 10px;
@@ -88,6 +100,10 @@ header {
         box-shadow: 0 2px 2px 0 rgba(60, 64, 67, 0.164) ;
     }
 
+    .select span {
+        font-size: .9rem;
+        color: #282c34 !important;
+    }
     .menu a, .clrBut {
         font-size: .9rem;
         background-color: #fff;

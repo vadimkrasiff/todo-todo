@@ -79,17 +79,18 @@ let Task: React.FC<Props> = ({ task, isFetching, getTaskData, updateTaskData }) 
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <label>Name</label>
+          <label  className={css.label}>Name</label>
           <Form.Item
 
             name="name"
             rules={[{ required: true, message: 'Please input name!' },]}
           >
-            <Input onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value)} maxLength={15} placeholder="Task name" />
+            <Input className={css.item} onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value)} maxLength={15} placeholder="Task name" />
           </Form.Item>
-          <label>Status</label>
+          <label  className={css.label}>Status</label>
           <Form.Item name="status" rules={[{ required: true }]}>
             <Select
+            className={css.item}
               onChange={(value) => onChangeSelect(value)}
               options={[
                 {
@@ -104,12 +105,12 @@ let Task: React.FC<Props> = ({ task, isFetching, getTaskData, updateTaskData }) 
             >
             </Select>
           </Form.Item>
-          <label>Text</label>
+          <label  className={css.label}>Text</label>
           <Form.Item
             name="text"
             rules={[{ required: true, message: 'Please input text!' }]}
           >
-            <TextArea onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value)} autoSize={{ minRows: 15, maxRows: 20 }} placeholder="Task text" />
+            <TextArea className={css.item} onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value)} autoSize={{ minRows: 15, maxRows: 20 }} placeholder="Task text" />
           </Form.Item>
           <Form.Item >
             <Button className={css.submit} type="primary" htmlType="submit">
