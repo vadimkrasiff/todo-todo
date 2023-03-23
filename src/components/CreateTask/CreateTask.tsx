@@ -63,7 +63,7 @@ let CreateTask: React.FC<Prop> = ({ tasks, isFetching, createNewTask, setTasks }
                 name="name"
                 rules={[{ required: true, message: 'Please input name!' }]}
             >
-                <Input className={css.item} onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value)} maxLength={15} placeholder="Task name" />
+                <Input className={css.item} onInput={e => (e.target as HTMLInputElement).value = FirstCaseUp((e.target as HTMLInputElement).value)} maxLength={10} placeholder="Task name" />
             </Form.Item>
             <label className={css.label}>Status</label>
             <Form.Item  name="status" rules={[{ required: true }]}>

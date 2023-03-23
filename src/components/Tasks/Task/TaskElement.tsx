@@ -35,6 +35,7 @@ let TaskElement: React.FC<Props> = ({ task, deleteTask }) => {
       <div className={task.status ? css.active : css.close}></div>
       <div className={!task.status ? css.closed: css.noClosed}>CLOSED</div>
     </div>
+    <div className={css.cats}></div>
     <NavLink to='/tasks'><CloseOutlined className={css.delete} onClick={() => deleteTask(task)} /></NavLink>
   </NavLink>
   </div>

@@ -6,14 +6,45 @@
     justify-content: center;
     align-items: center;
     width: 150px;
-    min-width: 150px;
     height: 150px;
     background-color: var(--task-background);
+    
     border-radius: 5px;
     box-shadow: 0 0px 5px 0px rgba(17, 12, 46, 0.16);
     transition: 0.3S;
     margin: 10px;
     color: var(--task-color);
+}
+
+.cat {
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    right: 0;
+    background-image: var(--task-create-background);
+    background-size: 100% 100%;
+    width: 100px;
+    height: 100px;
+    transition: 0.2s;
+}
+
+.cats {
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    background-image: var(--task-background);
+    background-size: 100% 100%;
+    width: 100px;
+    height: 100px;
+    transition: 0.2s;
+    transform: scale(-1, 1);
+}
+
+.task:hover .cat, .task:hover .cats {
+    z-index: -12;
+    width: 150px;
+    height: 150px;
 }
 
 .icon {
@@ -52,7 +83,9 @@
 
 .text {
     height: 80px;
-    overflow-y: hidden;
+    overflow: hidden;
+    white-space: pre-wrap;
+    flex-wrap: wrap;
 }
 
 .text  {
@@ -61,6 +94,8 @@
     white-space: pre-wrap;
     flex-wrap: wrap;
     color: var(--text-color);
+    white-space: pre-wrap;
+    flex-wrap: wrap;
 }
 
 .task:active .info .text,
@@ -155,4 +190,50 @@
     --text-hover-color: #282c3488;
     --text-color: #fff;
     --text-active-color: #282c3488;
+}
+
+
+:root[data-theme="funny"] {
+    --task-create-background: url("./../../../images/cats/pngegg.png");
+    --task-background: url("./../../../images/cats/pngegg (1).png");
+    --task-color: #282c34;
+    --task-hover-color: #fff;
+    --task-hover-background-color: #fcbfbf;
+    --task-active-color: #282c34;
+    --task-active-background-color: #ffF;
+    --label-border-bottom: #fcbfbf;
+    --text-color: #282c3488;
+    --text-hover-color: #fff;
+    --text-active-color: #282c3488;
+}
+
+@media (max-width: 780px) {
+    #createTask {
+        position: fixed;
+        z-index: 20;
+        bottom: 110px;
+        right: 20px;
+        border-radius: 50%;
+        height: 80px;
+        width: 80px;
+        overflow: hidden;
+    }
+
+    .cat {
+        
+        width: 50px;
+        height: 50px;
+        border-bottom-right-radius: 50%;
+
+    }
+
+    .task:hover .cat {
+        width: 70px;
+        height: 70px;
+    }
+
+    .title {
+        display: none;
+        
+    }
 }

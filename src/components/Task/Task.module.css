@@ -5,7 +5,7 @@
     border-radius: 5px;
     color: var(--color);
     border-radius: 5px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--form-border-color);
 }
 
 .label {
@@ -23,6 +23,11 @@
 .item div {
     background-color: var(--background-color) !important;
     color: var(--color) !important;
+    border-color: var(--form-border-color) !important;
+}
+
+.item::placeholder {
+    color: var(--placeholder-color) !important;
 }
 
 .label::before {
@@ -55,14 +60,24 @@
 
 :root[data-theme="light"] {
     --color: #000;
+    --placeholder-color: #00000098;
     --label-background: #fff;
     --submit-background: #0A2647;
-    --preloader-color: #000;
+    --form-border-color: #d9d9d9;
 }
 
 :root[data-theme="dark"] {
     --color: #fff;
-    --background-color: #282c34;
+    --placeholder-color: #d9d9d9bd;
     --label-background: #282c34;
     --submit-background: #31353f;
+    --form-border-color: #d9d9d9;
+}
+
+:root[data-theme="funny"] {
+    --color: #000;
+    --placeholder-color: #00000098;
+    --label-background: #fff;
+    --submit-background: #fc8787;
+    --form-border-color: #fcbfbf;
 }

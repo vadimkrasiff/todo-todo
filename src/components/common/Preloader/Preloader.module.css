@@ -15,11 +15,21 @@
   font-size: 150px;
   position: absolute;
   left: calc(50% - 75px);
+  
+}
+
+.cat {
+  position: absolute;
+  left: calc(50% - 250px);
+  background-image: var(--preloader-image);
+  background-size: 500px 375px;
+  min-width: 500px;
+  min-height: 375px
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .robot {
-    animation: App-logo-spin infinite 3s linear;
+  .robot, .cat {
+    animation: App-logo-spin infinite 2s linear;
   }
 }
 
